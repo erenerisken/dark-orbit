@@ -8,7 +8,7 @@
 #include <array>
 #include <cmath>
 
-#include "AlgebraicUtils.h"
+#include "Utilities.h"
 #include "Vector3.h"
 
 typedef std::array<std::array<float, 4>, 4> matrix_t;

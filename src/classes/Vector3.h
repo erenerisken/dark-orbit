@@ -6,7 +6,7 @@
 #define DARK_ORBIT_VECTOR3_H
 
 #include <iostream>
-#include "AlgebraicUtils.h"
+#include "Utilities.h"
 
 class Vector3 {
 private:
@@ -27,6 +27,7 @@ public:
     [[nodiscard]] float length() const;
     [[nodiscard]] Vector3 normalized() const;
 
+    float distanceTo(const Vector3& rhs) const;
     [[nodiscard]] bool equals(const Vector3& rhs) const;
 
     static Vector3 fromSphericalCoordinates(float theta, float phi, float r);

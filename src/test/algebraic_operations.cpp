@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "../classes/RotationMatrix.h"
+#include "../classes/Sphere.h"
 
 bool simpleRotation() {
     Vector3 p(3, 0, 0);
@@ -15,8 +16,16 @@ bool simpleRotation() {
     return true;
 }
 
+bool sphereAxis() {
+    Sphere sphere(3, 0, 1.57, 180, {0, 0, -1});
+    std::cout << "Axis of sphere: " << sphere.getAxis() << std::endl;
+
+    return true;
+}
+
 int main() {
     simpleRotation();
+    sphereAxis();
 
     return 0;
 }

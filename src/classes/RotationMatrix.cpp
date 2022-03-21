@@ -78,13 +78,13 @@ RotationMatrix RotationMatrix::aroundAxis(const Vector3 &axis, float degrees) {
     }};
     RotationMatrix m(orthonormal);
     RotationMatrix mInverse = m.transpose();
-    RotationMatrix rotationX = RotationMatrix::rotateX(AlgebraicUtils::degreesToRadians(degrees));
+    RotationMatrix rotationX = RotationMatrix::rotateX(Utilities::degreesToRadians(degrees));
 
     return mInverse * rotationX * m;
 }
 
 Vector3 RotationMatrix::operator*(const Vector3 &v) const {
-    std::array<float, 4> rhs = {v.getX(), v.getY(), v.getY(), 1};
+    std::array<float, 4> rhs = {v.getX(), v.getY(), v.getZ(), 1};
     std::array<float, 4> result = {0, 0, 0, 0};
 
     for (int i = 0; i < 4; ++i) {

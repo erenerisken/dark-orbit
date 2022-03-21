@@ -64,12 +64,18 @@ Vector3 Vector3::normalized() const {
 }
 
 bool Vector3::equals(const Vector3 &rhs) const {
-    return AlgebraicUtils::floatEquals(x, rhs.x) &&
-            AlgebraicUtils::floatEquals(y, rhs.y) &&
-            AlgebraicUtils::floatEquals(z, rhs.z);
+    return Utilities::floatEquals(x, rhs.x) &&
+           Utilities::floatEquals(y, rhs.y) &&
+           Utilities::floatEquals(z, rhs.z);
 }
 
 std::ostream &operator<<(std::ostream &o, const Vector3 &v) {
     o << "X=" << v.x << " Y=" << v.y << " Z=" << v.z;
     return o;
+}
+
+float Vector3::distanceTo(const Vector3& rhs) const {
+    return std::sqrt(std::powf(x - rhs.x, 2) +
+        std::powf(y - rhs.y, 2) +
+        std::powf(z - rhs.z, 2));
 }
