@@ -23,3 +23,10 @@ void Utilities::setNumIntervals(size_t n) {
 size_t Utilities::getNumIntervals() const {
     return numIntervals;
 }
+
+size_t Utilities::atou(const char *s) {
+    std::istringstream reader(s);
+    size_t value;
+    reader >> value;
+    return value;
+}

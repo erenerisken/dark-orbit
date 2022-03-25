@@ -4,7 +4,7 @@
 
 #include "Sphere.h"
 
-Sphere::Sphere(int index, const Utilities& utilities, unsigned int radius, float theta, float phi, int w, const Vector3 &uv):
+Sphere::Sphere(int index, Utilities& utilities, unsigned int radius, float theta, float phi, int w, const Vector3 &uv):
     index(index), utilities(utilities), radius(radius), theta(theta), phi(phi), w(w), uv(uv) {
 
     cartesianCoordinates = Vector3::fromSphericalCoordinates(theta, phi, (float)radius);
@@ -28,29 +28,35 @@ void Sphere::initializePositions() {
     size_t numPositions = 360 * numIntervals;
     float degreesPerUnitTime = (float)w / (float)numIntervals;
     RotationMatrix rotationMatrix = RotationMatrix::aroundAxis(axis, degreesPerUnitTime);
-
-    positions.resize(numPositions);
-    positions[0] = cartesianCoordinates;
+    std::vector<Vector3> calculatedPositions;
+    calculatedPositions.resize(numPositions);
+    calculatedPositions[0] = cartesianCoordinates;
     for (size_t i = 1; i < numPositions; ++i) {
-        positions[i] = rotationMatrix * positions[i - 1];
+        calculatedPositions[i] = rotationMatrix * calculatedPositions[i - 1];
     }
+    positions = calculatedPositions;
 }
 
-float Sphere::closestDistanceTo(Sphere &rhs) {
+std::pair<float, float> Sphere::closestDistanceTo(Sphere &rhs) {
     auto &selfPositions = getPositions();
     auto &rhsPositions = rhs.getPositions();
     size_t numPositions = selfPositions.size();
 
     float minDistance = selfPositions[0].distanceTo(rhsPositions[0]);
+    float t = 0;
     for (size_t i = 1; i < numPositions; ++i) {
-        minDistance = std::min(minDistance, selfPositions[i].distanceTo(rhsPositions[i]));
+        float distanceAtT = selfPositions[i].distanceTo(rhsPositions[i]);
+        if (distanceAtT < (minDistance - EPSILON)) {
+            minDistance = distanceAtT;
+            t = (float)i / (float)utilities.getNumIntervals();
+        }
     }
 
-    return minDistance;
+    return {minDistance, t};
 }
 
-unsigned int Sphere::radialDistanceTo(const Sphere &rhs) const {
-    return std::abs((int)radius - (int)rhs.radius);
+float Sphere::radialDistanceTo(const Sphere &rhs) const {
+    return std::fabs((float)radius - (float)rhs.radius);
 }
 
 int Sphere::getIndex() const {
@@ -59,4 +65,19 @@ int Sphere::getIndex() const {
 
 bool operator<(const Sphere &lhs, const Sphere &rhs) {
     return lhs.radius < rhs.radius;
+}
+
+Sphere &Sphere::operator=(const Sphere &rhs) {
+    index = rhs.index;
+    utilities = rhs.utilities;
+    radius = rhs.radius;
+    theta = rhs.theta;
+    phi = rhs.phi;
+    w = rhs.w;
+    uv = rhs.uv;
+    cartesianCoordinates = rhs.cartesianCoordinates;
+    axis = rhs.axis;
+    positions = rhs.positions;
+
+    return *this;
 }

@@ -15,7 +15,7 @@ add_executable(
         src/classes/Utilities.h
         src/classes/Sphere.cpp
         src/classes/Sphere.h
-)
+        src/classes/Simulation.cpp src/classes/Simulation.h src/classes/Errors.cpp src/classes/Errors.h)
 
 add_executable(
         test_algebraic_operations

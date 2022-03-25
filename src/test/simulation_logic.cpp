@@ -22,8 +22,8 @@ bool spherePositionsCalculation() {
 }
 
 bool sphereDistances() {
-    Sphere sphere1(utilities, 1, 1.57, 1.57, 45, {0, 0, 1});
-    Sphere sphere2(utilities, 3, 1.57, 0, 90, {1, 0, 0});
+    Sphere sphere1(1, utilities, 1, 1.57, 1.57, 45, {0, 0, 1});
+    Sphere sphere2(2, utilities, 3, 1.57, 0, 90, {1, 0, 0});
 
     std::cout << "Distance between spheres: " << sphere1.closestDistanceTo(sphere2) << std::endl;
     return true;

@@ -7,8 +7,10 @@
 
 #include <cmath>
 #include <numbers>
+#include <sstream>
 
-#define EPSILON 0.000001
+#define EPSILON 0.0001
+#define SPHERES_PER_THREAD 36
 
 class Utilities {
 private:
@@ -21,6 +23,8 @@ public:
     static float radiansToDegrees(float radians);
 
     static bool floatEquals(float x, float y);
+
+    static size_t atou(const char* s);
 };
 
 

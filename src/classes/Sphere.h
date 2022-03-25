@@ -11,7 +11,7 @@
 
 class Sphere {
 private:
-    const Utilities& utilities;
+    Utilities& utilities;
     int index;
 
     unsigned int radius;
@@ -26,15 +26,18 @@ private:
 
     void initializePositions();
 public:
-    Sphere(int index, const Utilities& utilities, unsigned int radius, float theta, float phi, int w, const Vector3 &uv);
+    Sphere(int index, Utilities& utilities, unsigned int radius, float theta, float phi, int w, const Vector3 &uv);
+
+    Sphere& operator=(const Sphere& rhs);
 
     [[nodiscard]] const Vector3 &getAxis() const;
 
     [[nodiscard]] int getIndex() const;
 
     const std::vector<Vector3> &getPositions();
-    float closestDistanceTo(Sphere& rhs);
-    [[nodiscard]] unsigned int radialDistanceTo(const Sphere& rhs) const;
+
+    std::pair<float, float> closestDistanceTo(Sphere& rhs);
+    [[nodiscard]] float radialDistanceTo(const Sphere& rhs) const;
 
     friend bool operator<(const Sphere& lhs, const Sphere& rhs);
 };
