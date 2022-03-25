@@ -121,7 +121,7 @@ void Simulation::threadRoutine(Simulation *simulation, size_t startIndex, size_t
         for (size_t j = i + 1; j < sphereCount; ++j) {
             auto &sphere2 = spheres[j];
             float currentMinimumDistance = simulation->getBestDistance();
-            if (sphere1.radialDistanceTo(sphere2) >= currentMinimumDistance) {
+            if (sphere1.radialDistanceTo(sphere2) + EPSILON >= currentMinimumDistance) {
                 break;
             }
 

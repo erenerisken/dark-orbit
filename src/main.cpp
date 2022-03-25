@@ -2,6 +2,7 @@
 // Created by Eren Erisken on 3/20/22.
 //
 
+#include <chrono>
 #include <iostream>
 
 #include "./classes/Simulation.h"
@@ -20,6 +21,8 @@ int main(int argc, char* argv[]) {
     numIntervals = Utilities::atou(argv[2]);
     numThreads = Utilities::atou(argv[3]);
 
+    auto start = std::chrono::steady_clock::now();
+
     try {
         Simulation simulation(pathToInputFile, numIntervals, numThreads);
         auto result = simulation.run();
@@ -29,5 +32,10 @@ int main(int argc, char* argv[]) {
         std::cerr << e.what() << std::endl;
     }
 
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Completed in "
+         << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()
+         << " ms"
+         << std::endl;
     return 0;
 }

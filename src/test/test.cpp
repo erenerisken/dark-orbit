@@ -46,6 +46,14 @@ int main() {
         }
     }
 
+    std::cout << "----------------------------------" << std::endl << std::endl;
+
+    if (fail == 0) {
+        std::cout << "All tests passed!" << std::endl;
+    } else {
+        std::cout << success << "/" << (success + fail) << " tests passed!" << std::endl;
+    }
+
     for (size_t i = 0; i < numSuites; ++i) {
         delete suites[i];
     }
