@@ -44,7 +44,7 @@ public:
     static RotationMatrix rotateX(float theta);
     /**
      * Calculates and returns a rotation matrix around given axis for given angle
-     * @param axis axis of rotation (not necessarily a unit ve
+     * @param axis axis of rotation (not necessarily a unit vector)
      * @param degrees angle of rotation in degrees
      * @return A new rotation matrix for a rotation of degrees amount
      */

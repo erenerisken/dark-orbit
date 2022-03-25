@@ -15,11 +15,14 @@ add_executable(
         src/classes/Utilities.h
         src/classes/Sphere.cpp
         src/classes/Sphere.h
-        src/classes/Simulation.cpp src/classes/Simulation.h src/classes/Errors.cpp src/classes/Errors.h)
+        src/classes/Simulation.cpp
+        src/classes/Simulation.h
+        src/classes/Errors.cpp
+        src/classes/Errors.h
+)
 
 add_executable(
-        test_algebraic_operations
-        src/test/algebraic_operations.cpp
+        run_tests
         src/classes/Vector3.cpp
         src/classes/Vector3.h
         src/classes/RotationMatrix.cpp
@@ -28,17 +31,11 @@ add_executable(
         src/classes/Utilities.h
         src/classes/Sphere.cpp
         src/classes/Sphere.h
-)
+        src/classes/Simulation.cpp
+        src/classes/Simulation.h
+        src/classes/Errors.cpp
+        src/classes/Errors.h
+        src/test/TestVector3.cpp
+        src/test/TestVector3.h
+        src/test/test.cpp src/test/TestSuite.cpp src/test/TestSuite.h src/test/TestSphere.cpp src/test/TestSphere.h src/test/TestRotationMatrix.cpp src/test/TestRotationMatrix.h)
 
-add_executable(
-        test_simulation_logic
-        src/test/simulation_logic.cpp
-        src/classes/Vector3.cpp
-        src/classes/Vector3.h
-        src/classes/RotationMatrix.cpp
-        src/classes/RotationMatrix.h
-        src/classes/Utilities.cpp
-        src/classes/Utilities.h
-        src/classes/Sphere.cpp
-        src/classes/Sphere.h
-)
