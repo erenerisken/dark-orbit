@@ -42,7 +42,7 @@ if __name__ == '__main__':
     n_spheres = int(sys.argv[1])
     for i in range(n_spheres):
         r = random.randrange(1, 1000000)
-        theta = round(random.uniform(0, math.pi), 3)
+        theta = round(random.uniform(-math.pi, math.pi), 3)
         phi = round(random.uniform(0.01, math.pi), 3)
         w = random.randrange(-360, 360)
         vx = r * math.cos(theta) * math.sin(phi)

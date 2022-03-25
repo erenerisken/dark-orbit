@@ -17,15 +17,15 @@ const Vector3 &Sphere::getAxis() const {
 
 const std::vector<Vector3> &Sphere::getPositions() {
     if (positions.empty()) {
-        initializePositions();
+        positions = initializePositions();
     }
 
     return positions;
 }
 
-void Sphere::initializePositions() {
+std::vector<Vector3> Sphere::initializePositions(size_t t) {
     size_t numIntervals = utilities.getNumIntervals();
-    size_t numPositions = 360 * numIntervals;
+    size_t numPositions = t * numIntervals;
     float degreesPerUnitTime = (float)w / (float)numIntervals;
     RotationMatrix rotationMatrix = RotationMatrix::aroundAxis(axis, degreesPerUnitTime);
     std::vector<Vector3> calculatedPositions;
@@ -34,7 +34,7 @@ void Sphere::initializePositions() {
     for (size_t i = 1; i < numPositions; ++i) {
         calculatedPositions[i] = rotationMatrix * calculatedPositions[i - 1];
     }
-    positions = calculatedPositions;
+    return calculatedPositions;
 }
 
 std::pair<float, float> Sphere::closestDistanceTo(Sphere &rhs) {

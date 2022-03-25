@@ -56,7 +56,6 @@ Simulation::SimulationResult Simulation::run() {
         size_t end = std::min(i + spheresPerThread, sphereCountAsU64) - 1;
         threads.emplace_back(std::thread(Simulation::threadRoutine, this, i, end));
     }
-    std::cout << "Invoked " << threads.size() << " threads." << std::endl;
 
     for (auto& thread: threads) {
         thread.join();

@@ -4,7 +4,7 @@
 
 #include "RotationMatrix.h"
 
-RotationMatrix::RotationMatrix(matrix_t m): matrix(m) {}
+RotationMatrix::RotationMatrix(const matrix_t &m): matrix(m) {}
 
 RotationMatrix RotationMatrix::rotateX(float theta) {
     float sinTheta = std::sin(theta);
